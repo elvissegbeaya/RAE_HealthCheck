@@ -1,0 +1,1 @@
+15 6 * * * root python3 /app/RAEAutomation.py >> /var/log/cron.log 2>&1

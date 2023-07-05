@@ -36,12 +36,12 @@ KeepCacheForDevelopment = False
 # get jobID, rigNumber, WellName, Startdate, EndDate #adding owner since we should verify who the owner is
 
 class Well(BaseModel):
-    jobID = ""
-    jobName = ""
-    Owner = ""
-    rigNumber = ""
-    Startdate = ""
-    EndDate = ""
+    jobID : str
+    jobName : str
+    Owner : str
+    rigNumber : str
+    Startdate : str
+    EndDate : str
 
 
 

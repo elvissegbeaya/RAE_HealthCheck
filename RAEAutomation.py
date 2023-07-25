@@ -122,19 +122,10 @@ def main():
     #US jobs
     token = welldataAPI.getToken(CFG['APIUrl'], CFG['appID_rae'], CFG['rae_user'], CFG['rae_password'])
 
-    # #Canada Jobs
-    # token = welldataAPI.getToken(CFG['APIUrl'], CFG['appID_rae_ca'], CFG['rae_ca_user'], CFG['rae_ca_password'])
+    #Canada Jobs
+    token2 = welldataAPI.getToken(CFG['APIUrl'], CFG['appID_rae_ca'], CFG['rae_ca_user'], CFG['rae_ca_password'])
 
 
-    # ONLY Get Patterson wells - getWells will filter them for us
-
-
-
-    # # Writing DataFrame to Excel sheet
-    # writer = pd.ExcelWriter(f'Rig List.xlsx', engine='openpyxl')
-    # df = pd.DataFrame(jobs)
-    # df.to_excel(writer, sheet_name='Jobs Processed', index=False)
-    # writer.close()
     ######################################################################
     # Main Code- RAE Report Stuff below, API Configuration Stuff above
     ######################################################################
@@ -173,7 +164,10 @@ def main():
     # Creating a lookup table of rigs
     lookup_table = {}
     tmpAllJobs = welldataAPI.getJobs(URLs_v1['getJobs'], token, CFG, take=1000, total=False, jobStatus="ActiveJobs")
-    for w in tmpAllJobs:
+    ca_tmpAllJobs = welldataAPI.getJobs(URLs_v1['getJobs'], token2, CFG, take=1000, total=False, jobStatus="ActiveJobs")
+    allJobs = tmpAllJobs
+    allJobs.append(ca_tmpAllJobs)
+    for w in tmpAllJobs and ca_tmpAllJobs:
         #jobs.append([w['id'], w['assetInfoList'][0]['owner'], w['assetInfoList'][0]['name']])
         key = f"{w['assetInfoList'][0]['owner']} {w['assetInfoList'][0]['name']}"
         # key = w['siteInfoList'][0]['owner']
@@ -197,9 +191,14 @@ def main():
 
     try:
         #for w in tmpJobs:#
-        for w in tmpAllJobs:
+        for w in allJobs:
             #well = str(w)
-            well = w['id']
+            well = ''
+            if "ca_" in str(w):
+                well = w[0]['id']
+
+            else:
+                well = w['id']
             attsLst = []
 
 
@@ -253,14 +252,23 @@ def main():
 
 
             # Checking for real time data capability
-            rTime = welldataAPI.getApiCall(URLs_v1['getJobsIdCapabilities'], token, CFG, jobId=well)
+            rTime = ''
+            if well in tmpJobs:
+                rTime = welldataAPI.getApiCall(URLs_v1['getJobsIdCapabilities'], token2, CFG, jobId=well)
+            else:
+                rTime = welldataAPI.getApiCall(URLs_v1['getJobsIdCapabilities'], token, CFG, jobId=well)
+
             if 'realTime' in str(rTime):
                 if rTime[0]['realTime'] == 'Supported':
                     realTime = emoji_check
 
 
             # 2 Get Attribute for job
-            q = welldataAPI.getApiCall(URLs_v1['getAttributes'], token, CFG, jobId=well)
+            q = ''
+            if well in tmpJobs:
+                q = welldataAPI.getApiCall(URLs_v1['getAttributes'], token2, CFG, jobId=well)
+            else:
+                q = welldataAPI.getApiCall(URLs_v1['getAttributes'], token, CFG, jobId=well)
 
             # for c in q[0]['attributes']:
             #     print(c['id'])
@@ -344,6 +352,8 @@ def main():
             if len(attsLst)== 0:
                 # Appending jobs to dataFrame
                 job = welldataAPI.getJobs(URLs_v1['getJobsId'], token, CFG, take=1000, total=False, jobStatus="ActiveJobs", jobId=well)
+                if well in tmpJobs:
+                    job = welldataAPI.getJobs(URLs_v1['getJobsId'], token2, CFG, take=1000, total=False, jobStatus="ActiveJobs", jobId=well)
                 # Appending for RAEJobs
                 holder.append(job[0]["assetInfoList"][0]["owner"])
                 holder.append(job[0]["assetInfoList"][0]["name"])
@@ -387,14 +397,22 @@ def main():
                 formatted_from_time = datetime.fromisoformat(from_time)
                 hist_interval = CFG['HistoricInterval']
                 hist_payload = welldataAPI.HistoricalTimeRequest(attributes=attsLst, toTime=to_time, fromTime=from_time, interval=hist_interval)
-                hist = welldataAPI.historical_data_time(well, hist_payload.json(exclude_unset=True), token=token)
+                if well in tmpJobs:
+                    hist = welldataAPI.historical_data_time(well, hist_payload.json(exclude_unset=True), token=token2)
+                else:
+                    hist = welldataAPI.historical_data_time(well, hist_payload.json(exclude_unset=True), token=token)
                 jobsTimeBased.append([well, hist])
 
             attribute_mapping = {}
 
             if len(hist['timeRecords']) ==  0:
                 # Appending jobs to dataFrame
-                job = welldataAPI.getJobs(URLs_v1['getJobsId'], token, CFG, take=1000, total=False, jobStatus="ActiveJobs", jobId=well)
+                job = ''
+                if well in tmpJobs:
+                    job = welldataAPI.getJobs(URLs_v1['getJobsId'], token2, CFG, take=1000, total=False, jobStatus="ActiveJobs", jobId=well)
+                else:
+                    job = welldataAPI.getJobs(URLs_v1['getJobsId'], token, CFG, take=1000, total=False, jobStatus="ActiveJobs", jobId=well)
+
                 # Appending for RAEJobs
                 holder.append(job[0]["assetInfoList"][0]["owner"])
                 holder.append(job[0]["assetInfoList"][0]["name"])
@@ -453,12 +471,6 @@ def main():
                         else:
                             HookLoadbool = emoji_x
 
-                    # if isinstance(HookLoad_val, float):
-                    #     if thresholdCheck(CFG['HookLoadbool_min'], CFG['HookLoadbool_max'], float(HookLoad_val)) == False:
-                    #         HookLoadbool = emoji_exclamation
-                    #     else:
-                    #         HookLoadbool = emoji_check
-
                 if key == 'PumpPressure':
                     PumpPressure_val = value
                     if isinstance(PumpPressure_val, float) or isinstance(PumpPressure_val, int) :
@@ -469,11 +481,6 @@ def main():
                         else:
                             PumpPressurebool = emoji_x
 
-                    # if isinstance(PumpPressure_val, float):
-                    #     if thresholdCheck(CFG['PumpPressurebool_min'], CFG['PumpPressurebool_max'], float(PumpPressure_val)) == False:
-                    #         PumpPressurebool = emoji_exclamation
-                    #     else:
-                    #         PumpPressurebool = emoji_check
 
                 if key == 'BlockHeight':
                     BlockHeight_val = value
@@ -485,11 +492,6 @@ def main():
                         else:
                             BlockHeightbool = emoji_x
 
-                    # if isinstance(BlockHeight_val, float):
-                    #     if thresholdCheck(CFG['BlockHeightbool_min'], CFG['BlockHeightbool_max'], float(BlockHeight_val)) == False:
-                    #         BlockHeightbool = emoji_exclamation
-                    #     else:
-                    #         BlockHeightbool = emoji_check
 
                 if key == 'PumpSpm':
                     PumpSpm_val = value
@@ -500,11 +502,6 @@ def main():
                             PumpSpmbool = emoji_check
                         else:
                             PumpSpmbool = emoji_x
-                    # if isinstance(PumpSpm_val, float):
-                    #     if thresholdCheck(CFG['PumpSpmbool_min'], CFG['PumpSpmbool_max'], float(PumpSpm_val)) == False:
-                    #         PumpSpmbool = emoji_exclamation
-                    #     else:
-                    #         PumpSpmbool = emoji_check
 
                 if key == 'PumpSpm2':
                     PumpSpm2_val = value
@@ -516,11 +513,6 @@ def main():
                         else:
                             PumpSpm2bool = emoji_x
 
-                    # if isinstance(PumpSpm2_val, float):
-                    #     if thresholdCheck(CFG['PumpSpm2bool_min'], CFG['PumpSpm2bool_max'], float(PumpSpm2_val)) == False:
-                    #         PumpSpm2bool = emoji_exclamation
-                    #     else:
-                    #         PumpSpm2bool = emoji_check
 
                 if key == 'PumpSpm3':
                     PumpSpm3_val = value
@@ -531,12 +523,6 @@ def main():
                             PumpSpm3bool = emoji_check
                         else:
                             PumpSpm3bool = emoji_x
-                    #
-                    # if isinstance(PumpSpm3_val, float):
-                    #     if thresholdCheck(CFG['PumpSpm3bool_min'], CFG['PumpSpm3bool_max'], float(PumpSpm3_val)) == False:
-                    #         PumpSpm3bool = emoji_exclamation
-                    #     else:
-                    #         PumpSpm3bool = emoji_check
 
                 if key == 'RotaryTorque':
                     RotaryTorque_val = value
@@ -548,11 +534,6 @@ def main():
                         else:
                             RotaryTorquebool = emoji_x
 
-                    # if isinstance(RotaryTorque_val, float):
-                    #     if thresholdCheck(CFG['RotaryTorquebool_min'], CFG['RotaryTorquebool_max'], float(RotaryTorque_val)) == False:
-                    #         RotaryTorquebool = emoji_exclamation
-                    #     else:
-                    #         RotaryTorquebool = emoji_check
 
                 if key == 'TopDrvRpm':  # tpDriveRPM
                     tpDriveRPM_val = value
@@ -563,11 +544,7 @@ def main():
                             tpDriveRPM = emoji_check
                         else:
                             tpDriveRPM = emoji_x
-                    # if isinstance(tpDriveRPM_val, float):
-                    #     if thresholdCheck(CFG['tpDriveRPM_min'], CFG['tpDriveRPM_max'], float(tpDriveRPM_val)) == False:
-                    #         tpDriveRPM = emoji_exclamation
-                    #     else:
-                    #         tpDriveRPM = emoji_check
+
 
                 if key == 'TopDrvTorque':  # tpDriveTorq
                     tpDriveTorq_val = value
@@ -579,11 +556,6 @@ def main():
                         else:
                             tpDriveTorq = emoji_x
 
-                    # if isinstance(tpDriveTorq_val, float):
-                    #     if thresholdCheck(CFG['tpDriveTorq_min'], CFG['tpDriveTorq_max'], float(tpDriveTorq_val)) == False:
-                    #         tpDriveTorq = emoji_exclamation
-                    #     else:
-                    #         tpDriveTorq = emoji_check
 
                 if key == 'BitWeightQualified':  # WOB
                     weightonBit_val = value
@@ -595,11 +567,6 @@ def main():
                         else:
                             weightonBit = emoji_x
 
-                    # if isinstance(tpDriveTorq_val, float):
-                    #     if thresholdCheck(CFG['WOB_min'], CFG['WOB_max'], float(weightonBit_val)) == False:
-                    #         weightonBit = emoji_exclamation
-                    #     else:
-                    #         weightonBit = emoji_check
 
                 if key == 'BitPosition':  # BitPosition
                     BitPosition_val = value
@@ -611,11 +578,6 @@ def main():
                         else:
                             BitPositionbool = emoji_x
 
-                    # if isinstance(BitPosition_val, float):
-                    #     if thresholdCheck(CFG['BitPositionbool_min'], CFG['BitPositionbool_max'], float(BitPosition_val)) == False:
-                    #         BitPositionbool = emoji_exclamation
-                    #     else:
-                    #         BitPositionbool = emoji_check
 
                 if key == 'BitStatus':  # BitStatus
                     BitStatus_val = value
@@ -625,11 +587,6 @@ def main():
                         BitStatusbool = 'Off'
                     else:
                         BitStatusbool = emoji_x
-                    # if isinstance(BitStatus_val, float):
-                    #     if thresholdCheck(CFG['BitStatusbool_min'], CFG['BitStatusbool_max'], float(BitStatus_val)) == False:
-                    #         BitStatusbool = emoji_exclamation
-                    #     else:
-                    #         BitStatusbool = emoji_check
 
                 if key == 'FastRopFtHr':  # ROP-F
                     RP_Fast_val = value
@@ -641,11 +598,6 @@ def main():
                         else:
                             RP_Fast = emoji_x
 
-                    # if isinstance(RP_Fast_val, float):
-                    #     if thresholdCheck(CFG['RP_Fast_min'], CFG['RP_Fast_max'], float(RP_Fast_val)) == False:
-                    #         RP_Fast = emoji_exclamation
-                    #     else:
-                    #         RP_Fast = emoji_check
 
                 if key == 'SlipStatus':  # SlipStatus
                     SlipStatus_val = value
@@ -657,11 +609,6 @@ def main():
                         SlipStatusbool = 'out'
                     else:
                         SlipStatusbool = emoji_x
-                    # if isinstance(SlipStatus_val, float):
-                    #     if thresholdCheck(CFG['SlipStatusbool_min'], CFG['SlipStatusbool_max'], float(SlipStatus_val)) == False:
-                    #         SlipStatusbool = emoji_exclamation
-                    #     else:
-                    #         SlipStatusbool = emoji_check
 
                 if key == 'TrigHkld':  # T-HL
                     tHookLoad_val = value
@@ -673,10 +620,6 @@ def main():
                         else:
                             tHookLoad = emoji_x
 
-                        # if thresholdCheck(CFG['tHookLoad_min'], CFG['tHookLoad_max'], float(tHookLoad_val)) == False:
-                        #     tHookLoad = emoji_exclamation
-                        # else:
-                        #     tHookLoad = emoji_check
 
                 if key == 'IadcRigActivity':  # IADC_RIG_ACTIVITY
                     Iadc_Rig_val = value
@@ -688,7 +631,48 @@ def main():
 
 
             # getting the comment portion
+            if well in tmpJobs:
+                # Appending jobs to dataFrame
+                job = welldataAPI.getJobs(URLs_v1['getJobsId'], token2, CFG, take=1000, total=False, jobStatus="ActiveJobs", jobId=well)
+                # Appending for RAEJobs
+                holder.append(job[0]["assetInfoList"][0]["owner"])
+                holder.append(job[0]["assetInfoList"][0]["name"])
+                holder.append(job[0]['siteInfoList'][0]['owner'])
+                holder.append(job[0]['name'])
+                # holder.append(well)
 
+                holder.append(str(Iadc_Rig_val))
+                holder.append(str(Iadc2_Rig_val))
+                holder.append(str(Iadc3_Rig_val))
+                holder.append(int(HookLoadbool))
+                holder.append(int(PumpPressurebool))
+                holder.append(int(BlockHeightbool))
+                holder.append(int(PumpSpmbool))
+                holder.append(int(PumpSpm2bool))
+                holder.append(int(PumpSpm3bool))
+                holder.append(int(RotaryTorquebool))
+                holder.append(int(tpDriveRPM))
+                holder.append(int(tpDriveTorq))
+                holder.append(int(weightonBit))
+                holder.append(int(RP_Fast))
+                holder.append(int(tHookLoad))
+                holder.append(int(BitPositionbool))
+                holder.append(str(BitStatusbool))
+                holder.append(str(SlipStatusbool))
+                comment = ''
+                comment24 = ''
+                reportID = ''
+                reportDate = ''
+                holder.append(comment)
+                holder.append(comment24)
+                holder.append(reportID)
+                holder.append(reportDate)
+                # holder.append(reportStatus)
+                count = count + 1
+                jobcount = jobcount + 1
+
+                RAEJobs.append(holder)
+                continue
 
             r = welldataAPI.getReports(URLs_v1['getReportsClassificationReportGroup'], token, CFG, jobId=well, reportGroupId=2, classification='daily')
             MR_Report_Ids.append([well, r])
@@ -794,6 +778,9 @@ def main():
 
             # Appending jobs to dataFrame
             job = welldataAPI.getJobs(URLs_v1['getJobsId'], token, CFG, take=1000, total=False, jobStatus="ActiveJobs", jobId=well)
+            if well in tmpJobs:
+                job = welldataAPI.getJobs(URLs_v1['getJobsId'], token2, CFG, take=1000, total=False, jobStatus="ActiveJobs", jobId=well)
+
             # Appending for RAEJobs
             holder.append(job[0]["assetInfoList"][0]["owner"])
             holder.append(job[0]["assetInfoList"][0]["name"])
@@ -845,7 +832,7 @@ def main():
     header = ['Contractor', 'Rig Number', 'Operator', 'Well name', 'IADC','IADC 2','IADC3', 'HookLoad', 'PumpPressure', 'BlockHeight', 'PumpSpm', 'PumpSpm2', 'PumpSpm3', 'RotaryTorque', 'TopDrive RPM',
               'TopDrive Torque', 'WOB',  'ROP-F','T-HL','BitPosition', 'BitStatus', 'SlipStatus',  'Comments', 'Next 24 Hr Comments', 'Report Id', 'Report Date']
 
-    df = pd.DataFrame(tmpAllJobs)
+    df = pd.DataFrame(tmpAllJobs and ca_tmpAllJobs)
     df.to_excel(writer, sheet_name='Jobs Processed', index=False)
 
     df = pd.DataFrame(RAEJobs)

@@ -35,13 +35,7 @@ KeepCacheForDevelopment = False
 # come here to edit the attributes that you want to hold.
 # get jobID, rigNumber, WellName, Startdate, EndDate #adding owner since we should verify who the owner is
 
-# class Well(BaseModel):
-#     jobID = ""
-#     jobName = ""
-#     Owner = ""
-#     rigNumber = ""
-#     Startdate = ""
-#     EndDate = ""
+
 
 
 

@@ -709,3 +709,71 @@
 2023-07-25 14:02:30,210 ERROR Response <Response [200]>
 2023-07-25 14:02:30,210 ERROR Sleeping for 1 seconds
 2023-07-25 14:04:50,744 INFO Starting script
+2023-07-26 08:47:38,756 INFO Starting script
+2023-07-26 08:50:01,078 ERROR Error sending request to server
+2023-07-26 08:50:01,079 ERROR Query https://data.welldata.net/api/v1/jobs/net_183645/reports/daily/2
+2023-07-26 08:50:01,080 ERROR Parameters {}
+2023-07-26 08:50:01,080 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiODY0MzA0NmUtMDIxMC00OWZjLTg1NTMtODgxMDk4Y2RmYzY3IiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE3LjEyMCIsImRldmljZU5hbWUiOm51bGx9.4-ozidi0oRddFRwjIIa5AMwhounxSqFxc5P5ASjwv1Q', 'accept': 'application/json'}
+2023-07-26 08:50:01,081 ERROR Response <Response [200]>
+2023-07-26 08:50:01,082 ERROR Sleeping for 1 seconds
+2023-07-26 08:50:41,018 ERROR Error sending request to server
+2023-07-26 08:50:41,018 ERROR Query https://data.welldata.net/api/v1/jobs/net_183743/reports/daily/2
+2023-07-26 08:50:41,018 ERROR Parameters {}
+2023-07-26 08:50:41,018 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiODY0MzA0NmUtMDIxMC00OWZjLTg1NTMtODgxMDk4Y2RmYzY3IiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE3LjEyMCIsImRldmljZU5hbWUiOm51bGx9.4-ozidi0oRddFRwjIIa5AMwhounxSqFxc5P5ASjwv1Q', 'accept': 'application/json'}
+2023-07-26 08:50:41,018 ERROR Response <Response [200]>
+2023-07-26 08:50:41,018 ERROR Sleeping for 1 seconds
+2023-07-26 08:50:56,431 INFO Starting script
+2023-07-27 08:30:10,102 INFO Starting script
+2023-07-27 08:30:24,655 ERROR Error sending request to server
+2023-07-27 08:30:25,259 ERROR Exception: 'OpsAtReportTime'
+2023-07-27 08:30:49,634 INFO Starting script
+2023-07-27 08:32:09,301 INFO Starting script
+2023-07-27 08:42:26,779 INFO Starting script
+2023-07-27 08:44:44,488 INFO Starting script
+2023-07-27 08:47:14,679 ERROR Error sending request to server
+2023-07-27 08:47:14,679 ERROR Query https://data.welldata.net/api/v1/jobs/net_183645/reports/daily/2
+2023-07-27 08:47:14,679 ERROR Parameters {}
+2023-07-27 08:47:14,679 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiYjY2MDhhODAtYTMyNC00MTNmLTk4NmUtMTMwNWU0ZjAxZDNiIiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE2LjE0OSIsImRldmljZU5hbWUiOm51bGx9.PkZYhE2MGxLY3eXsfRGT0BjIHCnprc2vWVx4KsCl9DU', 'accept': 'application/json'}
+2023-07-27 08:47:14,680 ERROR Response <Response [200]>
+2023-07-27 08:47:14,680 ERROR Sleeping for 1 seconds
+2023-07-27 08:48:01,397 ERROR Error sending request to server
+2023-07-27 08:48:01,397 ERROR Query https://data.welldata.net/api/v1/jobs/net_183778/reports/daily/2
+2023-07-27 08:48:01,397 ERROR Parameters {}
+2023-07-27 08:48:01,397 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiYjY2MDhhODAtYTMyNC00MTNmLTk4NmUtMTMwNWU0ZjAxZDNiIiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE2LjE0OSIsImRldmljZU5hbWUiOm51bGx9.PkZYhE2MGxLY3eXsfRGT0BjIHCnprc2vWVx4KsCl9DU', 'accept': 'application/json'}
+2023-07-27 08:48:01,398 ERROR Response <Response [200]>
+2023-07-27 08:48:01,398 ERROR Sleeping for 1 seconds
+2023-07-27 08:48:04,391 ERROR Error sending request to server
+2023-07-27 08:48:04,392 ERROR Query https://data.welldata.net/api/v1/jobs/net_183788/reports/daily/2
+2023-07-27 08:48:04,392 ERROR Parameters {}
+2023-07-27 08:48:04,392 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiYjY2MDhhODAtYTMyNC00MTNmLTk4NmUtMTMwNWU0ZjAxZDNiIiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE2LjE0OSIsImRldmljZU5hbWUiOm51bGx9.PkZYhE2MGxLY3eXsfRGT0BjIHCnprc2vWVx4KsCl9DU', 'accept': 'application/json'}
+2023-07-27 08:48:04,392 ERROR Response <Response [200]>
+2023-07-27 08:48:04,392 ERROR Sleeping for 1 seconds
+2023-07-27 08:48:14,575 INFO Starting script
+2023-07-28 08:00:45,041 INFO Starting script
+2023-07-28 08:02:57,330 ERROR Error sending request to server
+2023-07-28 08:02:57,330 ERROR Query https://data.welldata.net/api/v1/jobs/net_183645/reports/daily/2
+2023-07-28 08:02:57,330 ERROR Parameters {}
+2023-07-28 08:02:57,330 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiY2JjYmRlNjAtZmMyOS00ZGIxLWJjZDQtODFkMWRlOWIzMWNlIiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE3LjEyMCIsImRldmljZU5hbWUiOm51bGx9.f8KZ4zXvvtjJvL7cyul9QDAgcHzhNELGpqAMgl-XCEQ', 'accept': 'application/json'}
+2023-07-28 08:02:57,330 ERROR Response <Response [200]>
+2023-07-28 08:02:57,330 ERROR Sleeping for 1 seconds
+2023-07-28 08:03:32,225 ERROR Error sending request to server
+2023-07-28 08:03:32,226 ERROR Query https://data.welldata.net/api/v1/jobs/net_183778/reports/daily/2
+2023-07-28 08:03:32,226 ERROR Parameters {}
+2023-07-28 08:03:32,226 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiY2JjYmRlNjAtZmMyOS00ZGIxLWJjZDQtODFkMWRlOWIzMWNlIiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE3LjEyMCIsImRldmljZU5hbWUiOm51bGx9.f8KZ4zXvvtjJvL7cyul9QDAgcHzhNELGpqAMgl-XCEQ', 'accept': 'application/json'}
+2023-07-28 08:03:32,226 ERROR Response <Response [200]>
+2023-07-28 08:03:32,226 ERROR Sleeping for 1 seconds
+2023-07-28 08:03:51,116 INFO Starting script
+2023-07-31 07:19:37,523 INFO Starting script
+2023-07-31 07:21:37,522 ERROR Error sending request to server
+2023-07-31 07:21:37,522 ERROR Query https://data.welldata.net/api/v1/jobs/net_183645/reports/daily/2
+2023-07-31 07:21:37,522 ERROR Parameters {}
+2023-07-31 07:21:37,522 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiMjJjYTc2ZmYtOGFkZC00NDM3LWE1NzItMjQwNDdhOTI5MGZlIiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE2LjE0OSIsImRldmljZU5hbWUiOm51bGx9.h6PcXmuFvRQf8cMNzb5QQOS-XiU7LjEuduwWFr-DB74', 'accept': 'application/json'}
+2023-07-31 07:21:37,522 ERROR Response <Response [200]>
+2023-07-31 07:21:37,522 ERROR Sleeping for 1 seconds
+2023-07-31 07:22:29,232 ERROR Error sending request to server
+2023-07-31 07:22:29,232 ERROR Query https://data.welldata.net/api/v1/jobs/net_183904/reports/daily/2
+2023-07-31 07:22:29,232 ERROR Parameters {}
+2023-07-31 07:22:29,232 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiMjJjYTc2ZmYtOGFkZC00NDM3LWE1NzItMjQwNDdhOTI5MGZlIiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE2LjE0OSIsImRldmljZU5hbWUiOm51bGx9.h6PcXmuFvRQf8cMNzb5QQOS-XiU7LjEuduwWFr-DB74', 'accept': 'application/json'}
+2023-07-31 07:22:29,232 ERROR Response <Response [200]>
+2023-07-31 07:22:29,232 ERROR Sleeping for 1 seconds
+2023-07-31 07:23:26,257 INFO Starting script

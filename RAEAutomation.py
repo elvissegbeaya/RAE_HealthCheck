@@ -697,7 +697,8 @@ def main():
                 if 'GenericAmericanMorningReportDW' in str(report):
                     # continue
                     reportDate = report[0]['Reports'][0]['GenericAmericanMorningReportDW']['Header']['Date']
-                    comment = report[0]['Reports'][0]['GenericAmericanMorningReportDW']['Header']['OpsAtReportTime']
+                    if 'OpsAtReportTime' in str(report):
+                        comment = report[0]['Reports'][0]['GenericAmericanMorningReportDW']['Header']['OpsAtReportTime']
                     if 'OpsNext24' in str(report):
                         comment24 = report[0]['Reports'][0]['GenericAmericanMorningReportDW']['Header']['OpsNext24']
                     reportID = report[0]['Reports'][0]['GenericAmericanMorningReportDW']['ReportAttributes']['ReportID']

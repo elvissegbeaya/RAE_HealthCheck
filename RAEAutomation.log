@@ -777,3 +777,23 @@
 2023-07-31 07:22:29,232 ERROR Response <Response [200]>
 2023-07-31 07:22:29,232 ERROR Sleeping for 1 seconds
 2023-07-31 07:23:26,257 INFO Starting script
+2023-08-02 10:03:08,748 INFO Starting script
+2023-08-02 10:07:33,109 ERROR Error sending request to server
+2023-08-02 10:07:33,109 ERROR Exception: list index out of range
+2023-08-02 10:07:42,188 INFO Starting script
+2023-08-02 10:08:08,754 INFO Starting script
+2023-08-02 10:24:14,170 INFO Starting script
+2023-08-02 12:55:07,185 INFO Starting script
+2023-08-02 12:56:37,895 ERROR Error sending request to server
+2023-08-02 12:56:37,896 ERROR Query https://data.welldata.net/api/v1/jobs/net_183645/reports/daily/2
+2023-08-02 12:56:37,896 ERROR Parameters {}
+2023-08-02 12:56:37,896 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiNTk4Yjk0MWUtZGFiZS00ZGI1LWE1YjItNGY0ZTk1ODIxMjI1IiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE2LjEyOCIsImRldmljZU5hbWUiOm51bGx9.3x7cRbQXGRf5ZoDHwfqDrh5jBLcyNA_NK_ormjHeCQ8', 'accept': 'application/json'}
+2023-08-02 12:56:37,896 ERROR Response <Response [200]>
+2023-08-02 12:56:37,897 ERROR Sleeping for 1 seconds
+2023-08-02 12:57:10,152 ERROR Error sending request to server
+2023-08-02 12:57:10,152 ERROR Query https://data.welldata.net/api/v1/jobs/net_183912/reports/daily/2
+2023-08-02 12:57:10,152 ERROR Parameters {}
+2023-08-02 12:57:10,153 ERROR Headers {'Token': 'net,eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzYWx0IjoiNTk4Yjk0MWUtZGFiZS00ZGI1LWE1YjItNGY0ZTk1ODIxMjI1IiwicHJpbmNpcGFsIjoiMjA3NDh8MjIyNHw0OjEyOjEzOjE0OjE1OjE4OjE5OjIxOjIyOjIzOjI0OjI1OjI2OjI3OjI4OjI5OjMwfERXUmlnQWN0aXZpdHl8ZW4tVVN8b3RoZXIgICAgICAgICAgfHVzZXJ8MzAiLCJ1c2VySUQiOjIwNzQ4LCJ1c2VybmFtZSI6IkRXUmlnQWN0aXZpdHkiLCJhcHBsaWNhdGlvbiI6bnVsbCwiYXBwbGljYXRpb25HVUlEIjoiMDdjZDYwOGItZjRiOC00ZGEwLWJhZGMtODc3YTQxMTQxMzhjIiwidXNlcklQIjoiMTcyLjE2LjE2LjEyOCIsImRldmljZU5hbWUiOm51bGx9.3x7cRbQXGRf5ZoDHwfqDrh5jBLcyNA_NK_ormjHeCQ8', 'accept': 'application/json'}
+2023-08-02 12:57:10,153 ERROR Response <Response [200]>
+2023-08-02 12:57:10,153 ERROR Sleeping for 1 seconds
+2023-08-02 12:58:16,868 INFO Starting script

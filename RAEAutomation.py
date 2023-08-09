@@ -897,9 +897,9 @@ def main():
     from EmailModule import send_email
     recipients = CFG['emailRecipients']
     for recipient in recipients:
-        email_body = f'Hi {str(recipient)},\n \nPlease see the attached email for today"s RAE Data\n\n\nAlso, this is a test email.\n There"s no report Date, so I added the report completion status.'
+        email_body = f'Hi {str(recipient)},\n \nPlease see the attached email for today"s RAE Data.'
         # send email
-        send_email('Test Email From Elvis ', email_body, recipient, f'RAEJobsListTest {today} .xlsx')
+        send_email('Daily RAE Report ', email_body, recipient, f'RAEJobsListTest {today} .xlsx')
 
     logging.info('Starting script')
     quit()
